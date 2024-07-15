@@ -9,6 +9,7 @@ import arrow from "../assets/arrow.svg";
 import stroke_right from "../assets/stroke_right.svg";
 import stroke_left from "../assets/stroke_left.svg";
 import heart from "../assets/heart.svg";
+import share from "../assets/share.svg";
 
 const HeadWrapper = styled.div`
   width: 768px;
@@ -157,7 +158,7 @@ const RightSubThings = styled.div`
 
 const LeftSideBar = styled.div`
   width: 4rem;
-  background: var(--bg-element2);
+  background: #f8f9fa;
   border: 1px solid var(--border4);
   border-radius: 2rem;
   padding: 0.5rem;
@@ -167,6 +168,15 @@ const LeftSideBar = styled.div`
   align-items: center;
   position: absolute;
   left: -7rem;
+
+  .count {
+    margin-top: 0.5rem;
+    color: var(--text2);
+    line-height: 1;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
 `;
 
 const Heart = styled.div`
@@ -185,6 +195,42 @@ const Heart = styled.div`
   z-index: 5;
 `;
 
+const LeftSideBarAll = () => {
+  return (
+    <div style={{ width: "768px", margin: "0 auto", position: "relative" }}>
+      <LeftSideBar>
+        <Heart>
+          <img src={heart} />
+        </Heart>
+        <div className="count">114</div>
+        <Heart>
+          <img src={share} />
+        </Heart>
+      </LeftSideBar>
+    </div>
+  );
+};
+
+const RightBar = styled.div`
+  margin-left: 3rem;
+  width: 240px;
+  border-left: 2px solid #f1f3f5;
+  padding: 0.25rem 0.75rem;
+  color: var(--text3);
+  line-height: 1.5;
+  font-size: 0.875rem;
+  max-height: calc(-128px + 100vh);
+  overflow: hidden auto;
+`;
+
+const RightBarAll = () => {
+  return (
+    <div style={{ position: "absolute", left: "72%" }}>
+      <RightBar>서류를 쓰자</RightBar>
+    </div>
+  );
+};
+
 function PostDetailPage() {
   const { postID } = useParams();
   const post = dummy_data[postID - 1];
@@ -198,13 +244,8 @@ function PostDetailPage() {
       <HashTag>
         <a>android</a>
       </HashTag>
-      <div>
-        <LeftSideBar>
-          <Heart>
-            <img src={heart}/>
-          </Heart>
-        </LeftSideBar>
-      </div>
+      <LeftSideBarAll></LeftSideBarAll>
+      <RightBarAll></RightBarAll>
       <SmallTItle>
         <img src={bookmark} id="bookmark" />
         <div>
