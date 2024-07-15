@@ -1,20 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-
 import HomePage from "./pages/HomePage";
 import PostDetailPage from "./pages/PostDetailPage";
 
-const router = createBrowserRouter([ //배열
-  { //객체(자료구조)
-    path: "/",
-    element: <App />,
-    children: [{ path: "/", element: <HomePage /> }], //array, keyvalue 객체
-  },
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [{ path:"/detail/1", element: <PostDetailPage />}]
-  }
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "detail/:postID", element: <PostDetailPage /> }, // 동적 경로 설정
+    ],
+  },
 ]);
 
 export default router;

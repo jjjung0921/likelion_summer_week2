@@ -7,13 +7,20 @@ import HomeTab from "../components/HomeTab";
 import Layout from "../components/Layout";
 
 const PostCard = styled.li`
+  flex: 1 1 calc(33.33% - 32px);
   display: flex;
   flex-flow: column nowrap;
-  width: 100%;
   background: var(--bg-element1);
   border-radius: 4px;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.25s ease-in, transform 0.25s ease-in;
+  margin: 0 16px 32px;
+
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 const PostCardContent = styled.div`
@@ -21,6 +28,18 @@ const PostCardContent = styled.div`
   display: flex;
   flex: 1 1;
   flex-direction: column;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  p,
+  span {
+    font-size: 0.875em;
+  }
 `;
 
 const PostCardFooter = styled.div`
@@ -32,22 +51,40 @@ const PostCardFooter = styled.div`
   justify-content: space-between;
 `;
 
+const PostCardSum = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: -16px;
+  list-style: none;
+`;
+
+const PostCardComponent = ({ post }) => (
+  <PostCard key={post.postID}>
+    <Link to={`detail/${post.postID}`}>
+      <PostCardContent>
+        <img src={post.thumbnail} alt={post.title} />
+        <h4>{post.title}</h4>
+        <p>{post.content}</p>
+        <span>{post.createdAt}</span>
+      </PostCardContent>
+    </Link>
+    <PostCardFooter></PostCardFooter>
+  </PostCard>
+);
+
 function HomePage() {
   return (
     <>
       <Header></Header>
       <HomeTab></HomeTab>
       <Layout>
-        <ul>
-          <PostCard>
-          </PostCard>
-          <PostCard></PostCard>
-          <PostCard></PostCard>
-        </ul>
+        <PostCardSum>
+          {dummy_data.map((post) => (
+            <PostCardComponent key={post.postID} post={post} />
+          ))}
+        </PostCardSum>
       </Layout>
-      <Link to="detail/1">1번 페이지</Link>
-      <Link to="detail/2">2번 페이지</Link>
-      <Link to="detail/3">3번 페이지</Link>
     </>
   );
 }

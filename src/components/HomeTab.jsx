@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import header from "./Header";
 import Layout from "./Layout";
 import stroke from "../assets/stroke.svg";
 import clock from "../assets/clock.svg";
