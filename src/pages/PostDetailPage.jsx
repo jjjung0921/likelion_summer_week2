@@ -4,12 +4,12 @@ import Layout from "../components/Layout";
 import Header from "../components/Header";
 import styled from "styled-components";
 import { dummy_data } from "../data/dummy_data";
-import bookmark from "../assets/bookmark.svg";
+import bookmark from "../assets/bookmark.png";
 import arrow from "../assets/arrow.svg";
 import stroke_right from "../assets/stroke_right.svg";
 import stroke_left from "../assets/stroke_left.svg";
-import heart from "../assets/heart.svg";
-import share from "../assets/share.svg";
+import heart from "../assets/heart.png";
+import share from "../assets/share.png";
 
 const HeadWrapper = styled.div`
   width: 768px;
@@ -109,6 +109,8 @@ const SmallTItle = styled.div`
     position: absolute;
     right: 1.5rem;
     top: 0px;
+    width: 48px;
+    height: 48px; 
   }
 `;
 
@@ -193,8 +195,14 @@ const Heart = styled.div`
   color: #868e96;
   cursor: pointer;
   z-index: 5;
+
+  img{
+    width: 24px;
+    height: 24px;
+  }
 `;
 
+//이미지가 등장하지 않는 부분
 const LeftSideBarAll = () => {
   return (
     <div style={{ width: "768px", margin: "0 auto", position: "relative" }}>
@@ -225,7 +233,7 @@ const RightBar = styled.div`
 
 const RightBarAll = () => {
   return (
-    <div style={{ position: "absolute", left: "72%" }}>
+    <div style={{ position: "absolute", left: "80%" }}>
       <RightBar>서류를 쓰자</RightBar>
     </div>
   );
