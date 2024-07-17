@@ -241,7 +241,11 @@ const RightBarAll = () => {
 
 function PostDetailPage() {
   const { postID } = useParams();
-  const post = dummy_data[postID - 1];
+  const post = dummy_data.find((post) => post.postID === Number(postID));
+
+  if (!post) {
+    return <div>게시물을 찾을 수 없습니다.</div>;
+  }
 
   return (
     <>
@@ -257,7 +261,7 @@ function PostDetailPage() {
       <SmallTItle>
         <img src={bookmark} id="bookmark" />
         <div>
-          <h2>Retrospect: 돌아보기</h2>
+          <h2>{post.content}</h2>
           <SubThings>
             <div>
               <img src={arrow} /> 목록보기{" "}
@@ -278,7 +282,7 @@ function PostDetailPage() {
       </SmallTItle>
       <p style={{ margin: "5rem auto", textAlign: "center" }}>
         <img
-          src="https://velog.velcdn.com/images/l2hyunwoo/post/78f5fde2-6107-4e59-81ed-289a99bdd999/image.png"
+          src={post.thumbnail}
           style={{ width: "768px" }}
         />
       </p>
